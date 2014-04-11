@@ -7,7 +7,7 @@ require 'logger'
 #
 # Load Configuration from package.yaml
 #
-$package = YAML.load_file("./package.yaml")
+$package = YAML.load_file("./package.yml")
 
 # Logging
 $logger  = Logger.new($stdout)

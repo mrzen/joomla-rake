@@ -18,20 +18,27 @@ task :package_manifest do
     ext.update $package['package']['update_site']
 
     ext.files do |package_part|
-      $package['contents']['components'].each do |component|
-        ext.file({:type => "component" , :id => component} , "com_#{component}.zip")
-      end # Components
+      unless $package['contents']['components'].nil?
+        $package['contents']['components'].each do |component|
+          ext.file({:type => "component" , :id => component} , "com_#{component}.zip")
+        end # Components
+      end # if components
 
-      $package['contents']['plugins'].keys.each do |group|
-        $package['contents']['plugins'][group].each do |plugin|
-          ext.file({:type => "plugin" , :id => plugin , :group => group}, "plg_#{group}_#{plugin}.zip")
-        end # Plugins
-      end   # Plugin Groups
+      unless $package['contents']['components'].nil?
+        $package['contents']['plugins'].keys.each do |group|
+          $package['contents']['plugins'][group].each do |plugin|
+            ext.file({:type => "plugin" , :id => plugin , :group => group}, "plg_#{group}_#{plugin}.zip")
+          end # Plugins
+        end   # Plugin Groups
+      end     # If plugins
+      
+      unless $package['contents']['libraries'].nil?
+        $package['contents']['libraries'].each do |library|
+          ext.file({:type => "library", :id => library}, "lib_#{library}.zip")
+        end # Libraries
+      end # If Libraries
 
-      $package['contents']['libraries'].each do |library|
-        ext.file({:type => "library", :id => library}, "lib_#{library}.zip")
-      end # Libraries
-    end # Package Parts
+      end # Package Parts
   end # Document (Extension)
 
   manifest.target!

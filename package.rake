@@ -24,7 +24,7 @@ task :package_manifest do
         end # Components
       end # if components
 
-      unless $package['contents']['components'].nil?
+      unless $package['contents']['plugins'].nil?
         $package['contents']['plugins'].keys.each do |group|
           $package['contents']['plugins'][group].each do |plugin|
             ext.file({:type => "plugin" , :id => plugin , :group => group}, "plg_#{group}_#{plugin}.zip")

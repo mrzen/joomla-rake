@@ -14,10 +14,10 @@ end
 
 def bump_version
   version_file = File.read("./package.yml")
-  old_version_line = version_file[/^\s+version:\s*[\d\.]+$/]
+  old_version_line = version_file[/^\s{2}version:\s*[\d\.]+$/]
   new_version = next_version($package['package']['version'])
   
-  version_file.sub!( old_version_line , "    version: #{new_version}")
+  version_file.sub!( old_version_line , "  version: #{new_version}")
   
   File.write("./package.yml", version_file)
 

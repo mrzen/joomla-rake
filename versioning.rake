@@ -2,7 +2,7 @@
 require_relative 'helpers'
 
 
-def next_verison(current_version)
+def next_version(current_version)
   # Semantic Versioning Bump
   v = current_version.split '.'
   

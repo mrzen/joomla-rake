@@ -18,21 +18,10 @@ Rake.application.options.quiet = true if ENV['SILENT_RAKE'].nil?
 =begin rdoc
 
 Get Version Name.
-Version name is:
-* The first 8 characters of the latest commit ID
-* The branch name
+Version name is taken from the package description.
 =end
 def version_name
-  require 'rugged'
-  repository = Rugged::Repository.new Rugged::Repository.discover "."
-  reference  = repository.head
-  
-  commit_id = reference.log.last[:id_new]
-  commit_count   = reference.log.length
-  branch_name = reference.name.split("/").last
-
-  $package['package']['version'].to_s + '.' + commit_id[0..8] + "-" + branch_name
-  # commit_count.to_s + '-' + branch_name
+  $package['package']['version'].to_s
 end
 
 # Get the package name

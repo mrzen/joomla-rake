@@ -14,7 +14,7 @@ end
 
 def bump_version
   version_file = File.read("./package.yml")
-  old_version_line = old_file[/^\s{4}version\s*.*$/]
+  old_version_line = version_file[/^\s{4}version\s*.*$/]
   new_version = next_version($package.version)
   
   version_file.sub!( old_version_line , "    version: #{new_version}")
@@ -24,6 +24,7 @@ def bump_version
   new_version
 end
 
+desc "Increase the version number by 1 PATCH"
 task :bump do |t|
   puts "Version upgrade: #{version_name} → #{bump_version}"
 end

@@ -6,11 +6,7 @@ def generate_release_notes
 
   require 'redcarpet'
 
-<<<<<<< HEAD
   renderer = Redcarpet::Render::HTML_TOC.new([:with_doc_header, :hard_wrap])
-=======
-  renderer = Redcarpet::Renderer::HTML_TOC.new([:with_doc_header, :hard_wrap])
->>>>>>> 5834d787ccbf5bfc0cfb7d7f2faaa06c2c56c5b6
   markdown = Redcarpet::Markdown.new(renderer, [:no_intra_emphasis, :tables])
 
   release_note_source = File.read("./release_notes.md")

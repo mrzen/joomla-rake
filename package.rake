@@ -1,6 +1,19 @@
 require_relative 'helpers'
 require_relative 'manifest_generators'
 
+
+def generate_release_notes
+
+  require 'redcarpet'
+
+  renderer = Redcarpet::Render::HTML_TOC.new([:with_doc_header, :hard_wrap])
+  markdown = Redcarpet::Markdown.new(renderer, [:no_intra_emphasis, :tables])
+
+  release_note_source = File.read("./release_notes.md")
+  
+  markdown.render(release_note_source)
+end
+
 desc "Generate Package Manifest"
 task :package_manifest do
   require 'builder'
@@ -57,4 +70,9 @@ file package_file_path => [build_area] do
   chdir(build_area) do
     sh "zip -r ../#{package_name}.zip *.zip pkg_#{$package['name']}.xml"
   end
+end
+
+
+task :release_notes do
+  p generate_release_notes
 end

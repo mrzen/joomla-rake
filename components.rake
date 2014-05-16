@@ -7,6 +7,8 @@ task :build_components do
 end
 
 def build_component(name)
+  has_installer_script = false
+
   component_build_area = File.join(build_area, 'com_' + name)
 
   mkdir_p component_build_area
@@ -32,7 +34,7 @@ def build_component(name)
     files = Rake::FileList.new(".#{context}/components/com_#{name}/**/*")
 
     # Copy the installer script.
-    if has_installer_script
+    unless has_installer_script
       cp "./administrator/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
       has_installer_script = truek
     end

@@ -18,6 +18,10 @@ desc "Generate Package Manifest"
 task :package_manifest do
   require 'builder'
 
+  if File.exists?("./release_notes.md")
+    File.open( File.join(build_area , "./release_notes.html") ,'w').write(generate_release_notes)
+  end
+
   manifest_path = File.join(build_area, 'pkg_' + $package['name'] + '.xml')
   manifest_file = File.open(manifest_path, 'w')
 
@@ -68,7 +72,7 @@ task :package => [package_file_path]
 
 file package_file_path => [build_area] do
   chdir(build_area) do
-    sh "zip -r ../#{package_name}.zip *.zip pkg_#{$package['name']}.xml"
+    sh "zip -r ../#{package_name}.zip *.zip pkg_#{$package['name']}.xml release_notes.html"
   end
 end
 

@@ -36,7 +36,7 @@ def build_component(name)
     # Copy the installer script.
     unless has_installer_script
       cp "./administrator/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
-      has_installer_script = truek
+      has_installer_script = true
     end
     
 

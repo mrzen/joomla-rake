@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 require_relative 'helpers'
-require 'rugged'
 
-repo = Rugged::Repository.discover(".")
 
 def next_version(current_version)
   # Semantic Versioning Bump
@@ -33,6 +31,9 @@ end
 
 
 def commit_and_tag_version(old_version, new_version)
+
+  require 'rugged'
+  repo = Rugged::Repository.discover(".")
 
   oid = repo.write("Version Upgrade (#{old_version} → #{new_version})" , :blob)
   index = Rugged::Index.new

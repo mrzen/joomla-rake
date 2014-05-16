@@ -32,7 +32,11 @@ def build_component(name)
     files = Rake::FileList.new(".#{context}/components/com_#{name}/**/*")
 
     # Copy the installer script.
-    cp ".#{context}/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
+    if has_installer_script
+      cp "./administrator/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
+      has_installer_script = truek
+    end
+    
 
     files.each do |file_name|
       target_file_name = file_name.gsub(".#{context}/components/com_#{name}",target_context)

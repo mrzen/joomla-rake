@@ -7,6 +7,8 @@ task :build_components do
 end
 
 def build_component(name)
+  has_installer_script = false
+
   component_build_area = File.join(build_area, 'com_' + name)
 
   mkdir_p component_build_area

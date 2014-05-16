@@ -20,7 +20,6 @@ def bump_version
   new_version = next_version($package['package']['version'])
   
   version_file.sub!( old_version_line , "  version: #{new_version}")
-  
   File.write("./package.yml", version_file)
 
   commit_and_tag_version($package['package']['version'] , new_version)
@@ -33,7 +32,7 @@ end
 def commit_and_tag_version(old_version, new_version)
 
   require 'rugged'
-  repo = Rugged::Repository.discover(".")
+  repo = Rugged::Repository.discover nil
 
   oid = repo.write("Version Upgrade (#{old_version} → #{new_version})" , :blob)
   index = Rugged::Index.new
@@ -49,10 +48,6 @@ def commit_and_tag_version(old_version, new_version)
   tagged_commit = Rugged::Commit.create(repo, options)
 
   Rugged::Tag.create(repo, {:name => "Version #{new_version}", :target => tagged_commit.oid}
-
-
-
-
 
 )
   

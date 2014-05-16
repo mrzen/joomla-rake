@@ -72,7 +72,7 @@ def build_component(name)
     ext.authorEmail "info@mrzen.com"
     ext.authorUrl "mrzen.com/travelzen"
 
-    ext.install do |instal|
+    ext.install do |install|
       install.sql do |sql|
         sql.file({:driver => "mysql" , :charset => "utf8"}, "sql/install.mysql.utf8.sql")
       end

@@ -30,7 +30,10 @@ def build_component(name)
     # Do the other stuff
     mkdir_p File.join(component_build_area , target_context)
     files = Rake::FileList.new(".#{context}/components/com_#{name}/**/*")
-    
+
+    # Copy the installer script.
+    cp ".#{context}/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
+
     files.each do |file_name|
       target_file_name = file_name.gsub(".#{context}/components/com_#{name}",target_context)
       if File.directory?(file_name)
@@ -63,7 +66,7 @@ def build_component(name)
     ext.authorEmail "info@mrzen.com"
     ext.authorUrl "mrzen.com/travelzen"
 
-    ext.install do |install|
+    ext.install do |instal|l
       install.sql do |sql|
         sql.file({:driver => "mysql" , :charset => "utf8"}, "sql/install.mysql.utf8.sql")
       end

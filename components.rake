@@ -7,8 +7,6 @@ task :build_components do
 end
 
 def build_component(name)
-  has_installer_script = false
-
   component_build_area = File.join(build_area, 'com_' + name)
 
   mkdir_p component_build_area
@@ -34,11 +32,9 @@ def build_component(name)
     files = Rake::FileList.new(".#{context}/components/com_#{name}/**/*")
 
     # Copy the installer script.
-    unless has_installer_script
+    if context == '/administrator'
       cp "./administrator/components/com_#{name}/script.php" , File.join(component_build_area, 'script.php')
-      has_installer_script = true
     end
-    
 
     files.each do |file_name|
       target_file_name = file_name.gsub(".#{context}/components/com_#{name}",target_context)
@@ -122,6 +118,16 @@ def build_component(name)
         end
       end # Admin files
     end   # Admin
+
+    ext.files({:folder => "site"}) do |files|
+      Dir.glob(File.join(component_build_area, 'site' , '*')).each do |f|
+        if File.directory? f
+          files.folder File.basename( f )
+        else
+          files.filename File.basename( f )
+        end # IF
+      end # Files.each
+    end   # Files
   end     # Manifest
 
   manifest.target!

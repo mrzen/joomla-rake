@@ -77,6 +77,7 @@ file package_file_path => [build_area] do
 end
 
 
+desc 'Preview the release notes'
 task :release_notes do
   p generate_release_notes
 end

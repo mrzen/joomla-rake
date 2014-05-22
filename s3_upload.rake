@@ -31,7 +31,7 @@ task :release => [:bump , :package] do
 
   package_files.each do |file|
     o = bucket.objects[file]
-    o.write(Pathname.new( File.join('.' , 'packages', package_name + '.zip' ))
+    o.write(Pathname.new( File.join('.' , 'packages', package_name + '.zip' )))
   end
 
   o = bucket.objects[ File.join($package['s3']['path'] , 'extension.xml') ]

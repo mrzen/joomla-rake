@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # -*- coding: utf-8 -*-
 
+require_relative 'helpers'
+
 ##
 # Get the S3 Credentials
 #
@@ -23,8 +25,8 @@ task :release => [:bump , :package] do
   bucket = s3.buckets[$package['s3']['bucket']]
 
   package_files = [ 
-           $package['s3']['path'] + package_file_name,
-           $package['s3']['path'] + $package['name'] + '-latest.zip'
+           File.join( $package['s3']['path'] , package_name + '.zip'),
+           File.join( $package['s3']['path'] , $package['name'] + '-latest.zip')
           ]
 
   package_files.each do |file|

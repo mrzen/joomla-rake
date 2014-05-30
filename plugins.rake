@@ -1,9 +1,11 @@
 require_relative 'helpers'
 
 task :build_plugins do
-  $package['contents']['plugins'].each do |g|
-    g.last.each do |p|
-      build_plugin( g.first , p )
+  if $package['contents']['plugins']
+      $package['contents']['plugins'].each do |g|
+      g.last.each do |p|
+        build_plugin( g.first , p )
+      end
     end
   end
 end

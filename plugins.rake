@@ -30,7 +30,7 @@ def build_plugin(group, name)
   end
 
   # Handle language files
-  language_dirs = Dir.glob("./languages/*")
+  language_dirs = Dir.glob("./administrator/language/*")
   language_dirs.each do |language_dir|
     language_code = File.basename(language_dir)
     
@@ -38,6 +38,26 @@ def build_plugin(group, name)
     language_files.each do |f|
       cp f , File.join(plugin_build_area , File.basename(f))
     end
+  end
+
+  # Update the manifest meta data:
+  manifest_file = "#{plugin_build_area}/#{name}.xml"
+  manifest = ''
+
+  File.open(manifest_file, "r") do |file|
+    manifest = file.read()
+    manifest = template(manifest, { 
+      'release.version' => version_name,
+      'project.creation.date' => '01 Jan 2010',
+      'project.author' => $package['package']['author'],
+      'project.licence' => $package['package']['licence'],
+      'project.copyright' => $package['package']['copyright'],
+      'project.author.email' => $package['package']['author_email'],
+      'project.author.url' => $package['package']['author_url']
+    })
+  end
+  File.open(manifest_file, "w") do |file|
+    file.puts manifest
   end
 
   chdir(plugin_build_area) do

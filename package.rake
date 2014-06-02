@@ -37,21 +37,21 @@ task :package_manifest do
     ext.files do |package_part|
       unless $package['contents']['components'].nil?
         $package['contents']['components'].each do |component|
-          ext.file({:type => "component" , :id => component} , "com_#{component}.zip")
+          ext.file({:type => "component" , :id => "com_#{component}"} , "com_#{component}.zip")
         end # Components
       end # if components
 
       unless $package['contents']['plugins'].nil?
         $package['contents']['plugins'].keys.each do |group|
           $package['contents']['plugins'][group].each do |plugin|
-            ext.file({:type => "plugin" , :id => plugin , :group => group}, "plg_#{group}_#{plugin}.zip")
+            ext.file({:type => "plugin" , :id => "plg_#{plugin}" , :group => group}, "plg_#{group}_#{plugin}.zip")
           end # Plugins
         end   # Plugin Groups
       end     # If plugins
       
       unless $package['contents']['libraries'].nil?
         $package['contents']['libraries'].each do |library|
-          ext.file({:type => "library", :id => library}, "lib_#{library}.zip")
+          ext.file({:type => "library", :id => "lib_#{library}"}, "lib_#{library}.zip")
         end # Libraries
       end # If Libraries
 

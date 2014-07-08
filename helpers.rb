@@ -48,12 +48,3 @@ end
 def build_area
   "./packages/#{$package['name']}-#{version_name}"
 end
-
-# Replace template values
-def template( template, values )
-  output = template.clone()
-  values.keys.each { |key|
-    output.gsub!( /{{#{key}}}/, values[ key ].to_s )
-  }
-  output
-end

@@ -24,7 +24,7 @@ def build_library(name)
     end
   end
 
-  manifest_path = File.join(lib_build_area, 'lib_' + name + '.xml')
+  manifest_path = File.join(lib_build_area, name + '.xml')
   manifest_file = File.open(manifest_path , 'w')
   manifest = Builder::XmlMarkup.new(:indent => 2, :target => manifest_file)
   

@@ -28,16 +28,20 @@ def build_library(name)
   manifest_file = File.open(manifest_path , 'w')
   manifest = Builder::XmlMarkup.new(:indent => 2, :target => manifest_file)
   
+  manifest.instruct!
+
   manifest.extension({
                        :type => "library",
-                       :version => $package['package']['version'],
+                       :version => $package['package']['target_version'],
                        :method => "upgrade"}) do |ext|
-    ext.name "Library: #{name}"
-    ext.libraryname name
+    ext.name "#{name.capitalize} Library"
+    ext.libraryname "lib_" + name
     ext.version version_name
-    ext.copyright "© 2014 Mr.Zen Ltd."
-    ext.author "Mr.Zen Ltd."
-    ext.authorEmail "info@mrzen.com"
+    ext.copyright $package['package']['copyright']
+    ext.creationDate "01 Jen 2010"
+    ext.author $package['package']['author']
+    ext.authorEmail $package['package']['author_email']
+    ext.authorUrl $package['package']['author_url']
     
     ext.files do |files|
       chdir(lib_build_area) do

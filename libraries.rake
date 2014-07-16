@@ -35,7 +35,7 @@ def build_library(name)
                        :version => $package['package']['target_version'],
                        :method => "upgrade"}) do |ext|
     ext.name "#{name.capitalize} Library"
-    ext.libraryname "lib_" + name
+    ext.libraryname name
     ext.version version_name
     ext.copyright $package['package']['copyright']
     ext.creationDate "01 Jen 2010"

@@ -21,11 +21,15 @@ def build_component(name)
       language_files = Rake::FileList.new(".#{context}/language/#{language}/*")
 
       language_files.each do |language_file|
+
         if language_file.include?(name)
+
           copy_to_dir = File.join(component_build_area, target_context, "language" , language)
           mkdir_p copy_to_dir rescue nil
           cp language_file , copy_to_dir
+
         end
+
       end
     end
 
@@ -99,7 +103,7 @@ def build_component(name)
       admin.menu({:img => "components/com_#{name}/assets/menu_icon.png"}, "COM_#{name.upcase}_MENUTITLE")
 
       admin.languages do |languages|
-        language_dirs = Dir.glob( File.join(component_build_area, 'admin', 'language', '*') )
+        language_dirs = Rake::FileList.new( File.join(component_build_area, 'admin', 'language', '*') )
         language_dirs.each do |language_dir|
 
           language_code = language_dir.split('/').last

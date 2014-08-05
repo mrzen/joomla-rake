@@ -18,12 +18,14 @@ def build_component(name)
     language_dirs.each do |language_dir|
       language = language_dir.split("/").last
 
-      language_files = Rake::FileList.new(".#{context}/language/#{language}/*com_#{name}*")
+      language_files = Rake::FileList.new(".#{context}/language/#{language}/*")
 
       language_files.each do |language_file|
-        copy_to_dir = File.join(component_build_area, target_context, "language" , language)
-        mkdir_p copy_to_dir rescue nil
-        cp language_file , copy_to_dir
+        if language_file.include?(name)
+          copy_to_dir = File.join(component_build_area, target_context, "language" , language)
+          mkdir_p copy_to_dir rescue nil
+          cp language_file , copy_to_dir
+        end
       end
     end
 
@@ -104,7 +106,7 @@ def build_component(name)
           language_files = Dir.glob(File.join(language_dir , '*.ini'))
 
           language_files.each do |language_file|
-            language_path = language_file.gsub(component_build_area , '')
+            language_path = File.basename language_file
             languages.language({:tag => language_code}, language_path)
           end # language_files.each
         end # language_dir.each

@@ -18,7 +18,7 @@ def build_component(name)
     language_dirs.each do |language_dir|
       language = language_dir.split("/").last
 
-      language_files = Rake::FileList.new(".#{context}/language/#{language}/*#{name}*")
+      language_files = Rake::FileList.new(".#{context}/language/#{language}/*com_#{name}*")
 
       language_files.each do |language_file|
         copy_to_dir = File.join(component_build_area, target_context, "language" , language)

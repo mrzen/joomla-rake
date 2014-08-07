@@ -55,6 +55,13 @@ task :package_manifest do
         end # Libraries
       end # If Libraries
 
+
+      if $package['contents'].keys.include? 'templates'
+        $package['contents']['templates'].each do |template|
+          ext.file({:type => "template", :id => template , :client => "site"}, "tpl_#{template}.zip")
+        end
+      end
+
       end # Package Parts
   end # Document (Extension)
 

@@ -64,7 +64,7 @@ task :package_manifest do
 end
   
 # Prepare files in `package_files` for packaging
-directory build_area => [:build_libraries, :build_components, :build_plugins, :package_manifest]
+directory build_area => [:build_libraries, :build_components, :build_plugins, :build_templates, :package_manifest]
 
 # Build the package zip
 desc 'Build package zip archive'

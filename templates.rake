@@ -4,7 +4,9 @@ require_relative 'helpers'
 
 desc "Build Templates"
 task :build_templates do
-  $package['contents']['templates'].each { |t| build_template t } unless $package['contents']['templates'].nil?
+  if $package['contents'].keys.include? 'templates'
+    $package['contents']['templates'].each { |t| build_template t }
+  end
 end
 
 

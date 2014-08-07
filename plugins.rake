@@ -1,7 +1,7 @@
 require_relative 'helpers'
 
 task :build_plugins do
-  if $package['contents']['plugins']
+  if $package['contents'].keys.include? 'plugins'
       $package['contents']['plugins'].each do |g|
       g.last.each do |p|
         build_plugin( g.first , p )

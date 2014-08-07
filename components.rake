@@ -3,7 +3,11 @@ require_relative 'helpers'
 
 desc "Build the Components"
 task :build_components do
-  $package['contents']['components'].each { |c| build_component c } unless $package['contents']['components'].nil?
+
+  if $package['contents'].keys.include? 'components'
+    $package['contents']['components'].each { |c| build_component c }
+  end
+
 end
 
 def build_component(name)

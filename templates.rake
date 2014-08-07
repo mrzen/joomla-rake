@@ -44,4 +44,9 @@ def build_template(template_name)
     
   end
 
+
+  chdir(template_build_area) do
+    sh %{zip -r ../tpl_#{template_name}.zip *}
+  end
+
 end

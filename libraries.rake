@@ -2,11 +2,8 @@
 require_relative 'helpers'
 
 task :build_libraries do
-  if $package['contents']['libraries']
-    $package['contents']['libraries'].each do |lib|
-      build_library lib
-    end
-  end
+  $package['contents']['libraries'].each { |lib| build_library lib } unless $package['contents']['libraries'].nil?
+
 end
 
 def build_library(name)

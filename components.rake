@@ -43,7 +43,7 @@ def build_component(name)
     end
 
     files.each do |file_name|
-      target_file_name = file_name.gsub(".#{context}/components/com_#{name}",target_context)
+      target_file_name = file_name.gsub(".#{context}/components/com_#{name}", target_context)
       if File.directory?(file_name)
         mkdir_p File.join(component_build_area, target_file_name)
       else

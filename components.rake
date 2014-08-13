@@ -96,7 +96,7 @@ def build_component(name)
 
     ext.update do |update|
       update.schemas do |schema|
-        schema.schemapath({:type => "mysql"}, "admin/sql/updates")
+        schema.schemapath({:type => "mysql"}, "sql/updates")
       end
     end
 

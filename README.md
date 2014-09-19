@@ -45,4 +45,6 @@ contents:
   libraries:
     - mylib
     - mydependency
+  templates:
+    - mytemplate
 ```

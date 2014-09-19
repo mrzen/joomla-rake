@@ -41,7 +41,14 @@ def build_template(template_name)
         cp language_file , File.join(template_build_area, File.basename(language_file) )
       end
     end
-    
+
+    # Process any LESS files
+    if $package['less'][template_name]
+      $package['less'][template_name].each do |lessdef|
+        compile_less_styles(template_build_area, lessdef)
+      end
+    end
+
   end
 
 

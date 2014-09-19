@@ -43,8 +43,8 @@ def compile_less_styles(base_dir, definitions)
         flags << '-x'
       end
 
-      sh %{#{lessc} #{sources} #{flags.join(' ')} }
-      
+      sh %{#{lessc} #{flags.join(' ')} #{sources} #{definition['output']} }
+
     end
   end
 end

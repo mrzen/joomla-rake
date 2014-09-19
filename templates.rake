@@ -46,9 +46,7 @@ def build_template(template_name)
 
   # Process any LESS files
   if $package['less'].keys.include? template_name
-    $package['less'][template_name].each do |lessdef|
-      compile_less_styles(template_build_area, lessdef)
-    end
+      compile_less_styles(template_build_area, $package['less'][template_name])
   end
 
   chdir(template_build_area) do

@@ -42,15 +42,14 @@ def build_template(template_name)
       end
     end
 
-    # Process any LESS files
-    if $package['less'][template_name]
-      $package['less'][template_name].each do |lessdef|
-        compile_less_styles(template_build_area, lessdef)
-      end
-    end
-
   end
 
+  # Process any LESS files
+  if $package['less'].keys.include? template_name
+    $package['less'][template_name].each do |lessdef|
+      compile_less_styles(template_build_area, lessdef)
+    end
+  end
 
   chdir(template_build_area) do
     sh %{zip -r ../tpl_#{template_name}.zip *}

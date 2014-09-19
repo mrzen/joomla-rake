@@ -17,7 +17,7 @@ require_relative './helpers'
 def compile_less_styles(base_dir, definitions)
 
   chdir(base_dir) do
-    definitions.each do |defnition|
+    definitions.each do |definition|
       
       lessc = 'lessc'
 

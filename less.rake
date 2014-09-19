@@ -18,20 +18,33 @@ def compile_less_styles(base_dir, definitions)
 
   chdir(base_dir) do
     definitions.each do |defnition|
-      parser = Less::Parser.new(
-                                filenames: definition["inputs"],
-                                compress:  definition["compress"],
-                                optimize:  definition["optimize"]
-                                )
       
-      css = parser.parse.to_css
+      lessc = 'lessc'
 
-      File.open(definition, definition['output']) do |f|
-        f.write(css)
-        f.flush
+      case definition['inputs']
+      when Array then
+        sources = definition['inputs'].join(' ')
+      when String then
+        soruces = definition['inputs'].to_s
       end
+
+      flags = []
+      
+      if definition['optimize']
+        case definition['optimize']
+          when TrueClass then
+          flags << '-O2'
+          else
+          flags << '-O' + definition['optimize']
+        end
+      end
+
+      if definition['compress']
+        flags << '-x'
+      end
+
+      sh %{#{lessc} #{sources} #{flags.join(' ')} }
+      
     end
   end
-  
-
 end

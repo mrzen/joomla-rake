@@ -20,14 +20,7 @@ def compile_less_styles(base_dir, definitions)
     definitions.each do |definition|
       
       lessc = 'lessc'
-
-      case definition['inputs']
-      when Array then
-        sources = definition['inputs'].join(' ')
-      when String then
-        soruces = definition['inputs'].to_s
-      end
-
+      sources = definition['inputs'].join(' ')
       flags = []
       
       if definition['optimize']

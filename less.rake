@@ -18,9 +18,8 @@ def compile_less_styles(base_dir, definitions)
 
   chdir(base_dir) do
     definitions.each do |definition|
-      
+
       lessc = 'lessc'
-      sources = definition['inputs'].join(' ')
       flags = []
       
       if definition['optimize']
@@ -36,8 +35,14 @@ def compile_less_styles(base_dir, definitions)
         flags << '-x'
       end
 
-      sh %{#{lessc} #{flags.join(' ')} #{sources} #{definition['output']} }
+      if definition['include']
+        flags << "--include-path=" + definition['include'].join(':')
+      end
 
+      sources = definition['inputs'].join(' ')
+
+      sh %{#{lessc} #{flags.join(' ')} #{sources} #{definition['output']}}
+      
     end
   end
 end

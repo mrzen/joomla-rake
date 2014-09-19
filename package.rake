@@ -88,7 +88,7 @@ file package_file_path => [build_area] do
   chdir(build_area) do
 
     # Remove the do_not_include files
-    if $package.keys.include 'do_not_include'
+    if $package.keys.include? 'do_not_include'
       $package['do_not_include'].each do |glob|
         Dir[glob].each do |f|
           rm f

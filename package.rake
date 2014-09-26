@@ -32,7 +32,7 @@ task :package_manifest do
     ext.description $package['package']['description']
     ext.author $package['package']['author']
     ext.packagename $package['name']
-    ext.update $package['package']['update_site']
+    ext.update $package['package']['update_site'] + '/updates.xml'
     ext.version $package['package']['version']
 
     ext.files do |package_part|

@@ -36,7 +36,7 @@ task :upload => [:package] do
     o.acl = :public_read
   end
 
-  o = bucket.objects[ File.join($package['s3']['path'] , 'extension.xml') ]
+  o = bucket.objects[ File.join($package['s3']['path'] , 'updates.xml') ]
   o.write(update_manifest)
   o.acl = :public_read
 

@@ -33,6 +33,7 @@ task :package_manifest do
     ext.author $package['package']['author']
     ext.packagename $package['name']
     ext.update $package['package']['update_site']
+    ext.version $package['package']['version']
 
     ext.files do |package_part|
       if $package['contents'].keys.include? 'components'

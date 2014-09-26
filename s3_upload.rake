@@ -18,7 +18,7 @@ end
 
 
 desc 'Upload the package to S3'
-task :release => [:bump , :package] do
+task :upload => [:package] do
 
   require 'aws-sdk'
   
@@ -43,3 +43,7 @@ task :release => [:bump , :package] do
   p "Uploaded package #{package_name}.zip and update manifest to S3"
 
 end
+
+
+desc "Make a new Release (bump, package and upload)"
+task :release => [:bump, :package, :upload]

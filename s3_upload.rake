@@ -33,11 +33,13 @@ task :release => [:bump , :package] do
   package_files.each do |file|
     o = bucket.objects[file]
     o.write(Pathname.new( File.join('.' , 'packages', package_name + '.zip' )))
+    o.acl = :public_read
   end
 
   o = bucket.objects[ File.join($package['s3']['path'] , 'extension.xml') ]
   o.write(update_manifest)
+  o.acl = :public_read
 
-  p "Uploaded package #{package_file_name} and update manifest to S3"
+  p "Uploaded package #{package_name}.zip and update manifest to S3"
 
 end

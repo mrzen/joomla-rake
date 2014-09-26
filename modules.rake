@@ -12,10 +12,10 @@ def build_module(module_name)
   
   mkdir_p module_build_area
   
-  files = Rake::FileList.new("./modules/#{module_name}/**/*")
+  files = Rake::FileList.new("./modules/mod_#{module_name}/**/*")
 
   files.each do |file_name|
-    new_file_name = file_name.gsub("./modules/#{module_name}", '')
+    new_file_name = file_name.gsub("./modules/mod_#{module_name}", '')
     
     if File.directory? file_name
       mkdir_p File.join(module_build_area, new_file_name)

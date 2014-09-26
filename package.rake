@@ -41,6 +41,12 @@ task :package_manifest do
         end # Components
       end # if components
 
+      if $package['contents'].keys.include? 'modules'
+        $package['contents']['modules'].each do |mod|
+          ext.file({:type => "module" , :id => "mod_#{mod}"} , "mod_#{mod}.zip")
+        end # Components
+      end # if components
+
       if $package['contents'].keys.include? 'plugins'
         $package['contents']['plugins'].keys.each do |group|
           $package['contents']['plugins'][group].each do |plugin|

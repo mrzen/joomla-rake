@@ -69,7 +69,12 @@ task :package_manifest do
         end
       end
 
-      end # Package Parts
+    end # Package Parts
+
+    ext.updateservers do |server|
+      ext.server({:type => "extension", :name => $package['package']['name']}, $package['package']['update_site'] + '/updates.xml')
+    end
+
   end # Document (Extension)
 
   manifest.target!

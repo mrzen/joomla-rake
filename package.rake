@@ -34,7 +34,6 @@ task :package_manifest do
     ext.packagename $package['name']
     ext.update $package['package']['update_site'] + '/updates.xml'
     ext.version $package['package']['version']
-    ext.targetplatform({:name => 'joomla', :version => $package['package']['target_version']})
 
     ext.files do |package_part|
       if $package['contents'].keys.include? 'components'

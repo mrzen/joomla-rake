@@ -11,6 +11,7 @@ def update_manifest
       u.version version_name
       u.infourl "http://www.mrzen.com/travelzen"
       u.client 'site'
+      u.targetplatform({:name => 'joomla', :version => $package['package']['target_version']})
       u.downloads do |d|
         d.downloadurl({:type => "full" , :format => "zip"}, "#{$package['package']['update_site']}/#{package_name}.zip")
       end

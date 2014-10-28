@@ -10,12 +10,18 @@ def update_manifest
       u.element "pkg_#{$package['name']}"
       u.type 'package'
       u.version version_name
-      u.infourl "http://www.mrzen.com/travelzen"
-      u.client 'site'
-      u.targetplatform({:name => 'joomla', :version => $package['package']['target_version']})
       u.downloads do |d|
         d.downloadurl({:type => "full" , :format => "zip"}, "#{$package['package']['update_site']}/#{package_name}.zip")
       end
+      u.tags do |t|
+        u.tag 'Stable'
+      end
+      u.infourl "http://www.mrzen.com/travelzen"
+      u.maintainer 'MrZen Ltd'
+      u.maintainerurl 'http://www.mrzen.com'
+      u.targetplatform({:name => 'joomla', :version => $package['package']['target_version']})
+      u.section 'Updates'
+      u.client_id 1
     end
   end
 

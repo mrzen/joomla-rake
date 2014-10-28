@@ -112,3 +112,8 @@ desc 'Preview the release notes'
 task :release_notes do
   p generate_release_notes
 end
+
+desc 'Preview the update manifest'
+task :update_manifest do
+  p update_manifest
+end

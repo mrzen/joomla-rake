@@ -7,6 +7,7 @@ def update_manifest
     updates.update do |u|
       u.name $package['package']['name']
       u.description $package['package']['description']
+      u.element "pkg_#{$package['name']}"
       u.type 'package'
       u.version version_name
       u.infourl "http://www.mrzen.com/travelzen"

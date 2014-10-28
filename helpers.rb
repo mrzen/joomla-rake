@@ -21,7 +21,12 @@ Get Version Name.
 Version name is taken from the package description.
 =end
 def version_name
-  $package['package']['version'].to_s
+  $package['package']['version'].to_s + '.' + get_commit_count
+end
+
+def get_commit_count
+  v = `git rev-list HEAD --count`
+  v.strip!
 end
 
 # Get the package name

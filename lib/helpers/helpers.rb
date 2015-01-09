@@ -10,26 +10,35 @@ require 'logger'
 $package = YAML.load_file("./package.yml")
 
 # Logging
-$logger  = Logger.new($stdout)
+$logger  = Logger.new(STDOUT)
 $logger.level = Logger::INFO
 
-Rake.application.options.quiet = true if ENV['SILENT_RAKE'].nil?
+Rake.application.options.quiet = true if ENV['LOUD_RAKE'].nil?
 
-=begin rdoc
-
-Get Version Name.
-Version name is taken from the package description.
-=end
+##
+# Get Version Name.
+#
+# Version name is taken from the package description.
+#
+# @return [String] Verison Name
 def version_name
-  $package['package']['version'].to_s + '.' + get_commit_count
+  $package['package']['version'].to_s + '.' + commit_count
 end
 
-def get_commit_count
+##
+# Get the commit count
+#
+# Uses the git CLI to get the commit count
+#
+# @return [String] Commit Count
+def commit_count
   v = `git rev-list HEAD --count`
   v.strip!
 end
 
-# Get the package name
+## Get the package name
+#
+# @return [String] Package Name
 def package_name
   "pkg_#{$package['name']}-#{version_name}"
 end

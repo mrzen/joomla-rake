@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-require_relative 'helpers'
-
 task :build_libraries do
   if $package['contents'].keys.include?('libraries')
     $package['contents']['libraries'].each { |lib| build_library lib }

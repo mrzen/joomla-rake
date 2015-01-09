@@ -1,1 +1,1 @@
-require_relative 'lib/joomla_rake'
+require_relative 'lib/joomla-rake'

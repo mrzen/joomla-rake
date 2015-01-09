@@ -1,11 +1,6 @@
-=begin rdoc
-
-Helpers for working with LESS files
-Requires nodejs to operate
-
-=end
-
-require_relative './helpers'
+##
+# Helpers for working with LESS files
+# Requires nodejs to operate
 
 
 ##

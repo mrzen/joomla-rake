@@ -1,7 +1,3 @@
-require_relative 'helpers'
-require_relative 'manifest_generators'
-
-
 def generate_release_notes
 
   require 'redcarpet'

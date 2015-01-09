@@ -7,9 +7,9 @@ Gem::Specification.new do |gem|
   gem.date = '2015-01-01'
   gem.summary = 'Rake tasks to build Joomla packages.'
   gem.description = 'Rake tasks to build Joomla packages using a YAML DSL'
-  s.authors = ['Leo Adamek']
-  s.email = 'info@mrzen.com'
-  s.files = %(lib/joomla_rake.rb lib/tasks/*.rake lib/helpers/*.rb)
-  s.homepage = 'http://mrzen.com'
-  s.license = 'GPL2+'
+  gem.authors = ['Leo Adamek']
+  gem.email = 'info@mrzen.com'
+  gem.files = ['lib/joomla-rake.rb', Dir['lib/helpers/*.rb'], Dir['lib/tasks/*.rb']].flatten
+  gem.homepage = 'http://mrzen.com'
+  gem.license = 'GPL2+'
 end

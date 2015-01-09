@@ -1,5 +1,3 @@
-require_relative 'helpers'
-
 task :build_plugins do
   if $package['contents'].keys.include? 'plugins'
       $package['contents']['plugins'].each do |g|
@@ -64,4 +62,3 @@ def build_plugin(group, name)
     sh %{zip -r ../plg_#{group}_#{name}.zip *}
   end
 end
-

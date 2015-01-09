@@ -1,5 +1,3 @@
-require_relative 'helpers'
-
 # Heplper tasks
 desc "List files to be packaged"
 task :show_files do

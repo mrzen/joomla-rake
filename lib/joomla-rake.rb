@@ -5,8 +5,11 @@
 JRAKE_ROOT = File.dirname(File.join __FILE__)
 
 # Load Gems
-require 'bundler'
-Bundler.require :default
+require 'rake'
+require 'rugged'
+require 'builder'
+require 'nokogiri'
+require 'redcarpet'
 
 Rake.application.init
 

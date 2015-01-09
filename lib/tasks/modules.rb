@@ -1,5 +1,3 @@
-require_relative 'helpers'
-
 desc 'Build Modules'
 task :build_modules do
   if $package['contents'].keys.include? 'modules'

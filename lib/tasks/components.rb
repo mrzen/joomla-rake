@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-require_relative 'helpers'
-
 desc "Build the Components"
 task :build_components do
 

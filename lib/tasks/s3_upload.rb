@@ -1,11 +1,8 @@
 # -*- mode: ruby -*-
 # -*- coding: utf-8 -*-
 
-require_relative 'helpers'
-
 ##
 # Get the S3 Credentials
-#
 def s3_credentials
   
   {

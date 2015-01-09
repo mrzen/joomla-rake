@@ -1,7 +1,5 @@
 # -*- coding 'utf-8' -*-
 
-require_relative 'helpers'
-
 desc "Build Templates"
 task :build_templates do
   if $package['contents'].keys.include? 'templates'

@@ -54,6 +54,10 @@ def build_library(name)
     end # ext.files
   end # ext
 
+  if $package['js'].keys.include? "libraries/#{name}"
+    compile_js_sources(lib_build_area, $package['less']["libraries/#{name}"])
+  end
+
   manifest.target!
   manifest_file.flush
   manifest_file.close

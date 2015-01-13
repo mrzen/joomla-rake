@@ -16,7 +16,7 @@ def compile_js_sources(base_dir, definitions)
 
       sh %{cat #{sources} > #{definition['output']}.tmp}
       sh %{#{jscompressor} #{definition['output']}.tmp > #{definition['output']}}
-      rm definition['output'] + '.cat'
+      rm definition['output'] + '.tmp'
     end
   end
 end

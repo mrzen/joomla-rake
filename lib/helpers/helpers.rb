@@ -77,7 +77,7 @@ def package_tag
 
   return '' if branch == 'master'
 
-  branch
+  '-' + branch.strip!
 end
 
 def update_site

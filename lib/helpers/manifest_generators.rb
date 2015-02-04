@@ -11,10 +11,10 @@ def update_manifest
       u.type 'package'
       u.version version_name
       u.downloads do |d|
-        d.downloadurl({:type => "full" , :format => "zip"}, "#{$package['package']['update_site']}/#{package_name}.zip")
+        d.downloadurl({:type => "full" , :format => "zip"}, "#{update_site}/#{package_name}.zip")
       end
       u.tags do |t|
-        u.tag 'Stable'
+        u.tag package_tag || 'Stable'
       end
       u.infourl "http://www.mrzen.com/travelzen"
       u.maintainer 'MrZen Ltd'

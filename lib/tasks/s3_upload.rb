@@ -20,7 +20,7 @@ task :upload => [:package] do
   require 'aws-sdk'
   
   s3 = AWS::S3.new(s3_credentials)
-  bucket = s3.buckets[$package['s3']['bucket']]
+  bucket = s3.buckets[s3_bucket]
 
   package_files = [ 
            File.join( $package['s3']['path'] , package_name + '.zip'),

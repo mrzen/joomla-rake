@@ -4,14 +4,9 @@ require 'rugged'
 require 'builder'
 require 'logger'
 
-#
 # Load Configuration from package.yaml
-#
 $package = YAML.load_file("./package.yml")
 
-# Logging
-$logger  = Logger.new(STDOUT)
-$logger.level = Logger::INFO
 
 Rake.application.options.quiet = true if ENV['LOUD_RAKE'].nil?
 
@@ -22,7 +17,11 @@ Rake.application.options.quiet = true if ENV['LOUD_RAKE'].nil?
 #
 # @return [String] Verison Name
 def version_name
-  $package['package']['version'].to_s + '.' + commit_count
+  version = $package['package']['version'].to_s + '.' + commit_count
+
+  ENV['JR_PACKAGE_VERSION'] ||= version
+  
+  version
 end
 
 ##
@@ -40,7 +39,7 @@ end
 #
 # @return [String] Package Name
 def package_name
-  "pkg_#{$package['name']}-#{version_name}"
+  "pkg_#{$package['name']}-#{version_name}#{package_tag}"
 end
 
 
@@ -60,7 +59,7 @@ end
 
 # Get the build area path
 def build_area
-  "./packages/#{$package['name']}-#{version_name}"
+  "./packages/#{$package['name']}-#{version_name}#{package_tag}"
 end
 
 # Replace template values
@@ -70,4 +69,23 @@ def template( template, values )
     output.gsub!( /{{#{key}}}/, values[ key ].to_s )
   }
   output
+end
+
+
+def package_tag
+  branch = `git rev-parse --abbrev-ref HEAD`
+
+  return '' if branch == 'master'
+
+  branch
+end
+
+def update_site
+  $package['package']['test_update_site'] if package_tag
+  $package['package']['update_site']
+end
+
+def s3_bucket
+  $package['package']['test_bucket'] if package_tag
+  $package['package']['bucket']
 end

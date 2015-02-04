@@ -86,6 +86,6 @@ def update_site
 end
 
 def s3_bucket
-  $package['package']['test_bucket'] if package_tag
-  $package['package']['bucket']
+  $package['s3']['test_bucket'] if package_tag
+  $package['s3']['bucket']
 end

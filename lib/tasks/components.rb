@@ -101,7 +101,7 @@ def build_component(name)
 
     ext.scriptfile "script.php" if File.exist?( File.join(component_build_area , 'admin' , 'script.php') )
     
-    ext.administration do |admin|
+    ext.administration({:folder => 'admin'}) do |admin|
       admin.menu({:img => "components/com_#{name}/assets/menu_icon.png"}, "COM_#{name.upcase}_MENUTITLE")
 
       admin.languages do |languages|
@@ -128,6 +128,21 @@ def build_component(name)
           end
         end
       end # Admin files
+    end   # Admin
+
+    ext.languages({:folder => 'site'}) do |languages|
+
+        language_dirs = Dir.glob( File.join(component_build_area, 'site', 'language', '*') )
+        language_dirs.each do |language_dir|
+
+          language_code = language_dir.split('/').last
+          language_files = Dir.glob(File.join(language_dir , '*.ini'))
+
+          language_files.each do |language_file|
+            language_path = File.join('language', (File.basename language_file))
+            languages.language({:tag => language_code}, language_path)
+          end # language_files.each
+        end # language_dir.each
     end   # Admin
 
     ext.files({:folder => "site"}) do |files|

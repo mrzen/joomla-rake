@@ -1,0 +1,13 @@
+	Changelog
+	=========
+
+	Release 1.7.1:
+
+	* Fixed the setting of <client> in the update manifest
+	* Updated the setting of the update site URL.
+
+	Rlease 1.3.2:
+
+	* Removed hard-coded aws-sdk dependency; only required for S3 repos
+	* Fixed the handling of S3 buckets
+	

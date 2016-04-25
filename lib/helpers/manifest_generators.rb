@@ -14,14 +14,14 @@ def update_manifest
         d.downloadurl({:type => "full" , :format => "zip"}, "#{update_site}/#{package_name}.zip")
       end
       u.tags do |t|
-        u.tag package_tag || 'Stable'
+        t.tag 'stable'
       end
-      u.infourl "http://www.mrzen.com/travelzen"
-      u.maintainer 'MrZen Ltd'
-      u.maintainerurl 'http://www.mrzen.com'
+      u.infourl $package['package']['info_url'] || "http://www.mrzen.com/travelzen"
+      u.maintainer $package['package']['maintainer'] || 'MrZen Ltd'
+      u.maintainerurl $package['package']['maintainer_url'] || 'http://www.mrzen.com'
       u.targetplatform({:name => 'joomla', :version => $package['package']['target_version']})
       u.section 'Updates'
-      u.client_id 1
+      u.client 'administrator'
     end
   end
 

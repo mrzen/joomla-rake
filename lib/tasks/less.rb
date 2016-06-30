@@ -16,7 +16,7 @@ def compile_less_styles(base_dir, definitions)
 
       lessc = 'lessc'
       flags = []
-      
+
       if definition['optimize']
         case definition['optimize']
           when TrueClass then
@@ -26,10 +26,6 @@ def compile_less_styles(base_dir, definitions)
         end
       end
 
-      if definition['compress']
-        flags << '-x'
-      end
-
       if definition['include']
         flags << "--include-path=" + definition['include'].join(':')
       end
@@ -37,7 +33,7 @@ def compile_less_styles(base_dir, definitions)
       sources = definition['inputs'].join(' ')
 
       sh %{#{lessc} #{flags.join(' ')} #{sources} #{definition['output']}}
-      
+
     end
   end
 end

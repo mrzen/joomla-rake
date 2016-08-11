@@ -1,6 +1,5 @@
 require 'yaml'
 require 'rake'
-require 'rugged'
 require 'builder'
 require 'logger'
 
@@ -20,7 +19,7 @@ def version_name
   version = $package['package']['version'].to_s + '.' + commit_count
 
   ENV['JR_PACKAGE_VERSION'] ||= version
-  
+
   version
 end
 

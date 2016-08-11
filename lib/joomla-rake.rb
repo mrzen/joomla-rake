@@ -6,7 +6,6 @@ JRAKE_ROOT = File.dirname(File.join __FILE__)
 
 # Load Gems
 require 'rake'
-require 'rugged'
 require 'builder'
 require 'nokogiri'
 require 'redcarpet'

@@ -6,7 +6,7 @@ def generate_release_notes
   markdown = Redcarpet::Markdown.new(renderer, {no_intra_emphasis: true, tables: true})
 
   release_note_source = File.read("./release_notes.md")
-  
+
   markdown.render(release_note_source)
 end
 
@@ -28,9 +28,9 @@ task :package_manifest do
     ext.description $package['package']['description']
     ext.author $package['package']['author']
     ext.packagename $package['name']
-
     ext.update $package['package']['update_site'] + '/updates.xml' unless $package['package']['update_site'].nil?
-    
+    ext.createionDate Time.now
+
     ext.version version_name
 
     ext.files do |package_part|
@@ -53,7 +53,7 @@ task :package_manifest do
           end # Plugins
         end   # Plugin Groups
       end     # If plugins
-      
+
       if $package['contents'].keys.include? 'libraries'
         $package['contents']['libraries'].each do |library|
           ext.file({:type => "library", :id => library}, "lib_#{library}.zip")
@@ -81,7 +81,7 @@ task :package_manifest do
   manifest_file.flush
   manifest_file.close
 end
-  
+
 # Prepare files in `package_files` for packaging
 directory build_area => [
                          :build_libraries,

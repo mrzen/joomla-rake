@@ -11,12 +11,12 @@ Gem::Specification.new do |gem|
   gem.email = 'info@mrzen.com'
   gem.files = ['lib/joomla-rake.rb', Dir['lib/helpers/*.rb'], Dir['lib/tasks/*.rb']].flatten
   gem.homepage = 'http://mrzen.com'
-  gem.license = 'GPL2+'
+  gem.license = 'GPL-2.0'
 
   gem.required_ruby_version = '>= 2.2'
 
-  gem.add_runtime_dependency 'rake', '>= 10.3.2'
-  gem.add_runtime_dependency 'builder', '~> 3.2.2'
-  gem.add_runtime_dependency 'nokogiri', '~> 1.6.7.2'
-  gem.add_runtime_dependency 'redcarpet', '~> 3.1.2'
+  gem.add_runtime_dependency 'rake', '~> 10.3.2', '>= 10.3.2'
+  gem.add_runtime_dependency 'builder', '~> 3.2', '>= 3.2.2'
+  gem.add_runtime_dependency 'nokogiri', '~> 1.6', '>= 1.6.7.2'
+  gem.add_runtime_dependency 'redcarpet', '~> 3.1', '>= 3.1.2'
 end

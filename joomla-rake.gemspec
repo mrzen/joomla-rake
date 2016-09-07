@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'joomla-rake'
-  gem.version = '1.8.3'
+  gem.version = '1.8.4'
   gem.date = '2016-08-11'
   gem.summary = 'Rake tasks to build Joomla packages.'
   gem.description = 'Rake tasks to build Joomla packages using a YAML DSL'
@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage = 'http://mrzen.com'
   gem.license = 'GPL-2.0'
 
-  gem.required_ruby_version = '>= 2.2'
+  gem.required_ruby_version = '>= 1.9.3'
 
   gem.add_runtime_dependency 'rake', '~> 11.2', '>= 11.2.2'
   gem.add_runtime_dependency 'builder', '~> 3.2', '>= 3.2.2'

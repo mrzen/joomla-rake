@@ -112,7 +112,7 @@ def build_component(name)
           language_files = Dir.glob(File.join(language_dir , '*.ini'))
 
           language_files.each do |language_file|
-            language_path = File.join('language', (File.basename language_file))
+            language_path = File.join('language', language_code, (File.basename language_file))
             languages.language({:tag => language_code}, language_path)
           end # language_files.each
         end # language_dir.each
@@ -139,7 +139,7 @@ def build_component(name)
           language_files = Dir.glob(File.join(language_dir , '*.ini'))
 
           language_files.each do |language_file|
-            language_path = File.join('language', (File.basename language_file))
+            language_path = File.join('language', language_code, (File.basename language_file))
             languages.language({:tag => language_code}, language_path)
           end # language_files.each
         end # language_dir.each

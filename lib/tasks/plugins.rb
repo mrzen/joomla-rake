@@ -28,7 +28,7 @@ def build_plugin(group, name)
   end
 
   # Handle language files
-  language_dirs = Dir.glob("./administrator/language/*")
+  language_dirs = Dir.glob("./language/*")
   language_dirs.each do |language_dir|
     language_code = File.basename(language_dir)
     

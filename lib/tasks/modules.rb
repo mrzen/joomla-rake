@@ -24,6 +24,17 @@ def build_module(module_name)
     end
   end
 
+  # Handle language files
+  language_dirs = Dir.glob("./language/*")
+  language_dirs.each do |language_dir|
+    language_code = File.basename(language_dir)
+    
+    language_files = Rake::FileList.new(File.join(language_dir, "#{language_code}.plg_#{group}_#{name}.*ini"))
+    language_files.each do |f|
+      cp f , File.join(module_build_area , File.basename(f))
+    end
+  end
+
   chdir(module_build_area) do
     sh %{zip -r ../mod_#{module_name}.zip *}
   end

@@ -3,8 +3,8 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'joomla-rake'
-  gem.version = '2.0'
-  gem.date = '2016-08-11'
+  gem.version = '2.2'
+  gem.date = '2016-09-12'
   gem.summary = 'Rake tasks to build Joomla packages.'
   gem.description = 'Rake tasks to build Joomla packages using a YAML DSL'
   gem.authors = ['Leo Adamek']

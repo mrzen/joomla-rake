@@ -3,11 +3,11 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'joomla-rake'
-  gem.version = '2.3'
-  gem.date = '2016-09-12'
+  gem.version = '2.3.1'
+  gem.date = '2016-09-30'
   gem.summary = 'Rake tasks to build Joomla packages.'
   gem.description = 'Rake tasks to build Joomla packages using a YAML DSL'
-  gem.authors = ['Leo Adamek']
+  gem.authors = ['Leo Adamek', 'David Havard']
   gem.email = 'info@mrzen.com'
   gem.files = ['lib/joomla-rake.rb', Dir['lib/helpers/*.rb'], Dir['lib/tasks/*.rb']].flatten
   gem.homepage = 'http://mrzen.com'

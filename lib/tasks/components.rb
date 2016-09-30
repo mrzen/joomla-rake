@@ -104,7 +104,7 @@ def build_component(name)
     ext.administration({:folder => 'admin'}) do |admin|
       admin.menu({:img => "components/com_#{name}/assets/menu_icon.png"}, "COM_#{name.upcase}_MENUTITLE")
 
-      admin.languages do |languages|
+      admin.languages({:folder => 'admin'}) do |languages|
         language_dirs = Dir.glob( File.join(component_build_area, 'admin', 'language', '*') )
         language_dirs.each do |language_dir|
 

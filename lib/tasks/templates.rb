@@ -49,6 +49,15 @@ def build_template(template_name)
     end
   end
 
+  # Process any SCSS files
+  if $package.key?('scss')
+    $package['scss'].keys.each do |file|
+      input = File.join(template_build_area, $package['scss'][file]['input'])
+      output = File.join(template_build_area, $package['scss'][file]['output'])
+      sh %{sassc #{input} #{output}}
+    end
+  end
+
   chdir(template_build_area) do
     sh %{zip -r ../tpl_#{template_name}.zip *}
   end

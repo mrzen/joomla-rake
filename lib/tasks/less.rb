@@ -17,15 +17,6 @@ def compile_less_styles(base_dir, definitions)
       lessc = 'lessc'
       flags = []
 
-      if definition['optimize']
-        case definition['optimize']
-          when TrueClass then
-          flags << '-O2'
-          else
-          flags << '-O' + definition['optimize']
-        end
-      end
-
       if definition['include']
         flags << "--include-path=" + definition['include'].join(':')
       end

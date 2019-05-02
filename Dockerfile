@@ -15,8 +15,8 @@ RUN npm install -g uglify-js less
 RUN gem install rake aws-sdk
 
 # Copy the gem over & Install
-COPY ./joomla-rake-2.3.6.gem /tmp
-RUN gem install /tmp/joomla-rake-2.3.6.gem
+COPY ./joomla-rake-2.3.7.gem /tmp
+RUN gem install /tmp/joomla-rake-2.3.7.gem
 
 WORKDIR /app
 CMD [ "/usr/local/bundle/bin/rake" ]

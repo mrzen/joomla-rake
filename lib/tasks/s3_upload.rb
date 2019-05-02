@@ -7,7 +7,6 @@ task :upload => [:package] do
 
   require 'aws-sdk'
   s3 = Aws::S3::Client.new
-  #bucket = s3.bucket(s3_bucket)
 
   package_files = [
            File.join( $package['s3']['path'] , package_name + '.zip'),
@@ -17,7 +16,6 @@ task :upload => [:package] do
   package_files.each do |file|
     File.open(Pathname.new( File.join('.' , 'packages', package_name + '.zip' )), 'rb') do |f|
       s3.put_object(
-        acl: 'public-read',
         body: f,
         bucket: s3_bucket,
         key: file,
@@ -28,7 +26,6 @@ task :upload => [:package] do
   s3.put_object(
     bucket: s3_bucket,
     key: File.join($package['s3']['path'] , 'updates.xml'),
-    acl: 'public-read',
     body: update_manifest
     )
 

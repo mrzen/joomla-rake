@@ -9,4 +9,5 @@ runs:
   using: 'docker'
   image: 'docker://mrzen/joomla-rake:latest'
   args:
+    - rake
     - ${{ inputs.task }}

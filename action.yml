@@ -1,4 +1,12 @@
 name: 'Joomla Rake Build'
+description: 'Rake-based Joomla package builder'
+inputs:
+  task:
+    description: 'Rake task'
+    required: true
+    default: 'package'
 runs:
   using: 'docker'
   image: 'docker://mrzen/joomla-rake:latest'
+  args:
+    - ${{ inputs.task }}

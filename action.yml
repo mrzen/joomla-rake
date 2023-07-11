@@ -1,4 +1,4 @@
 name: 'Joomla Rake Build'
 runs:
   using: 'docker'
-  image: 'mrzen/joomla-rake:latest'
+  image: 'docker://mrzen/joomla-rake:latest'

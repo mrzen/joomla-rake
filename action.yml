@@ -1,0 +1,4 @@
+name: 'Joomla Rake Build'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
